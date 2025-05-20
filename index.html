@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>nazlı & taylan</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        scroll-snap-type: y mandatory;
+        overflow-y: scroll;
+        background-color: #73946b;
+        font-family: "Segoe UI", sans-serif;
+        color: #d2d0a0;
+      }
+
+      .section {
+        height: 100vh;
+        scroll-snap-align: start;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 40px 20px;
+      }
+
+      .header {
+        text-align: center;
+      }
+
+      .header h1 {
+        font-size: 3rem;
+        font-weight: bold;
+      }
+      .btn-mavi {
+        background-color: #d2d0a0;
+        color: #73946b;
+        border: none;
+      }
+
+      .btn-mavi:hover {
+        background-color: #c0bd8f;
+        color: #5c7355;
+      }
+
+      .btn-outline-primary,
+      .btn-outline-danger {
+        border-color: #d2d0a0;
+        color: #d2d0a0;
+      }
+
+      .btn-outline-primary:hover,
+      .btn-outline-danger:hover {
+        background-color: #d2d0a0;
+        color: #73946b;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- giriş -->
+    <div
+      class="section d-flex flex-column justify-content-center align-items-center text-center"
+    >
+      <h1 class="mb-3">nazli & taylan</h1>
+      <p class="lead">19 mayis 2025 – resmen asigiz.</p>
+      <p>"dunya uzerindeki ilk asksal tarihce sitesi."</p>
+    </div>
+
+    <!-- test -->
+    <div class="section">
+      <h3>ruh eşi testi</h3>
+      <label>1. nazlı'nın en sevdiği renk nedir?</label>
+      <input type="text" class="form-control mb-2" id="q1" />
+      <label>2. nazlının gercek dogum gunu?</label>
+      <input type="text" class="form-control mb-2" id="q2" />
+      <label>3. taylan cayı mı secer ice americanoyu mu?</label>
+      <input type="text" class="form-control mb-2" id="q3" />
+      <label>4. imamoglunu destekliyor musunuz?</label>
+      <input type="text" class="form-control mb-2" id="q4" />
+      <button class="btn btn-mavi mt-2" onclick="checkTest()">
+        kontrol et ve sonucu bana ss at
+      </button>
+      <p id="testResult" class="mt-2"></p>
+    </div>
+
+    <!-- görseller -->
+    <div class="section">
+      <h3>hatıralarımız kısmı ama dolacak</h3>
+    </div>
+
+    <!-- anketler -->
+    <div class="section">
+      <h3>kim daha aşık?</h3>
+      <button class="btn btn-outline-primary" onclick="vote('taylan', 'love')">
+        taylan
+      </button>
+      <button class="btn btn-outline-danger" onclick="vote('nazlı', 'love')">
+        nazlı
+      </button>
+      <p class="mt-2" id="voteResultLove">oylamaya katılınız</p>
+    </div>
+
+    <div class="section">
+      <h3>kim daha tatlı?</h3>
+      <button class="btn btn-outline-primary" onclick="vote('taylan', 'anger')">
+        taylan
+      </button>
+      <button class="btn btn-outline-danger" onclick="vote('nazlı', 'anger')">
+        nazlı
+      </button>
+      <p class="mt-2" id="voteResultAnger">oylamaya katılınız</p>
+    </div>
+
+    <div class="section">
+      <h3>kim daha yks canavarı?</h3>
+      <p>ayt canavarı belli zaten</p>
+      <button class="btn btn-outline-primary" onclick="vote('taylan', 'study')">
+        taylan
+      </button>
+      <button class="btn btn-outline-danger" onclick="vote('nazlı', 'study')">
+        nazlı
+      </button>
+      <p class="mt-2" id="voteResultStudy">oylamaya katılınız</p>
+    </div>
+
+    <!-- gizli mesaj 1 -->
+    <div class="section">
+      <h3>gizli mesaj</h3>
+      <input
+        type="password"
+        class="form-control"
+        id="secretPass1"
+        placeholder="şifreyi gir"
+      />
+      <button class="btn btn-mavi mt-2" onclick="revealSecret1()">
+        göster
+      </button>
+      <p class="mt-3 hidden" id="secretMessage1">“benimle evlenir misin??”</p>
+    </div>
+
+    <!-- müzik -->
+    <div class="section">
+      <h3>şarkılar 🎶</h3>
+      <p>benden aşkıma</p>
+      <div class="ratio ratio-16x9">
+        <iframe
+          style="border-radius: 12px"
+          src="https://open.spotify.com/embed/playlist/0UzOOtbacplMVhbhiUJZ7g?utm_source=generator&theme=0"
+          width="100%"
+          height="352"
+          frameborder="0"
+          allowfullscreen=""
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+
+    <script>
+      function checkTest() {
+        const q1 = document.getElementById("q1").value.toLowerCase().trim();
+        const q2 = document.getElementById("q2").value.toLowerCase().trim();
+        const q3 = document.getElementById("q3").value.toLowerCase().trim();
+        const q4 = document.getElementById("q4").value.toLowerCase().trim();
+        if (
+          q1 === "yeşil" &&
+          q2.includes("16 aralık") &&
+          q3 === "çay" &&
+          q4 === "evet"
+        ) {
+          document.getElementById("testResult").innerText =
+            "testi geçtin bravo askımmmm <3";
+        } else {
+          document.getElementById("testResult").innerText = "salaksın zaaa";
+        }
+      }
+
+      let votes = {
+        love: {
+          taylan: 10000000,
+          nazlı: 0,
+        },
+        anger: {
+          taylan: 0,
+          nazlı: 12087312831830,
+        },
+        study: {
+          taylan: 0,
+          nazlı: -10,
+        },
+      };
+
+      function vote(person, type) {
+        votes[type][person]++;
+        updateResults(type);
+      }
+
+      function updateResults(type) {
+        if (type === "love") {
+          document.getElementById(
+            "voteResultLove"
+          ).innerText = `taylan: ${votes.love.taylan} oy, nazlı: ${votes.love.nazlı} oy`;
+        } else if (type === "anger") {
+          document.getElementById(
+            "voteResultAnger"
+          ).innerText = `taylan: ${votes.anger.taylan} oy, nazlı: ${votes.anger.nazlı} oy`;
+        } else if (type === "study") {
+          document.getElementById(
+            "voteResultStudy"
+          ).innerText = `taylan: ${votes.study.taylan} oy, nazlı: ${votes.study.nazlı} oy`;
+        }
+      }
+
+      function revealSecret1() {
+        const pass = document.getElementById("secretPass1").value;
+        if (pass === "sevgilimicokseviyorum") {
+          document.getElementById("secretMessage1").classList.remove("hidden");
+        } else {
+          alert("şifre yanlış zaaa");
+        }
+      }
+
+      function revealSecret2() {
+        const pass = document.getElementById("secretPass2").value;
+        if (pass === "acabaçocuğumuzolduğundaadınınekoyacağız") {
+          document.getElementById("secretMessage2").classList.remove("hidden");
+        } else {
+          alert("şifre yanlış zaaa bunu asla bulamayacaksın");
+        }
+      }
+    </script>
+  </body>
+</html>
